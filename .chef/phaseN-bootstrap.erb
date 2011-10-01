@@ -1,0 +1,43 @@
+bash -c '
+
+# force chef to re-register itself (creating a new node)
+#
+if [ -f /etc/chef/client.rb ] 
+then
+  rm -f /etc/chef/client.rb
+fi
+
+if [ -f /etc/chef/client.pem ] 
+then
+  rm -f /etc/chef/client.pem
+fi
+
+if [ -f /etc/chef/validation.pem ] 
+then
+  rm -f /etc/chef/validation.pem
+fi
+
+
+# setup validation keys and other chef related items
+#
+(
+cat <<'EOP'
+<%= validation_key %>
+EOP
+) > /tmp/validation.pem
+awk NF /tmp/validation.pem > /etc/chef/validation.pem
+rm /tmp/validation.pem
+
+(
+cat <<'EOP'
+<%= config_content %>
+EOP
+) > /etc/chef/client.rb
+
+(
+cat <<'EOP'
+<%= { "run_list" => @run_list }.to_json %>
+EOP
+) > /etc/chef/first-boot.json
+
+/usr/local/bin/chef-client -j /etc/chef/first-boot.json'
