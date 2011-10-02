@@ -1,0 +1,10 @@
+{
+  "id": "admin",
+  "groups": [ "admin", "www-data" ],
+  "local_files": true,
+  "full_name": "General Administrator",
+  "shell": "/bin/bash",
+  "ssh_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAxQLbzJWWVFhYASXzmY46QgeI140Kw8ST4sazioG+w+LLcMXatU4OILn2LHwcnRaOutSQPofKTTPooXgZsZL54O+LN4l0kiijAXLE/ZmisMcUalhsRXhkJ42UiRbiTWJYe9a4Cu3opaqXhUnZsSOlLD5KMm3b2cEGIkDbyGOEDx8Xs0fWWKwnE3G7qaE0OOPjgfzKAzhJ4YgKKXXqTxQoRTUWYCWAalDlVgIO3ZnubmW68my+/7cIoGI8srHk0wrEjVS/S98uujWF1JuBUAQFrQrXIfg34tYFw2suT75d6J9YgD6zUFuMH1eUpF4pvNhITBzqryng/3dm48/q3uIa1Q== Ken@KJoyner.com",
+  "password": "$1$ZWklZFoY$0gxmF161Ah6I5UoAOfty4."
+}
+

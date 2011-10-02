@@ -1,0 +1,10 @@
+{
+  "id": "ken",
+  "groups": [ "developer", "admin", "www-data" ],
+  "local_files": true,
+  "full_name": "Ken Joyner",
+  "shell": "/bin/bash",
+  "ssh_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2LAQUSIScm59u/DwkDrd2Hl7Qon3m63F6DRNhWtk3q3Hkoo1Qo+z7X2watdc0VYmLB+hFUr9Y428FMX21cXkAUOMO8VJRhyDH9d+Tf4vnpSCHKlA7aWBZyx6LVrLX6r4q9hHBABhzRA2EQNgjwY04KUKc3uP4wwM7wKBmwaut7t8UZWECRyx0BlhyIdR4CD+GKFy3L3XeCenkoCyYf3RclkaKJmkOmsd3jMzgK53qZnGWLMWKw9CGedZlC7HsVz2tpqob0+TubZ5kVUCw0yCkM55FQRwIFLpD6VGiJ+Eq/7zSp7n4bViXWtRx44JmmW3GVSpQe9Ks3l16SRjoBmTB ken@kens-macbook",
+  "password": "$1$ZWklZFoY$0gxmF161Ah6I5UoAOfty4."
+}
+

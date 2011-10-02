@@ -1,0 +1,55 @@
+bash -c '
+if  [ ! -f /usr/local/bin/chef-client ]; then
+
+  apt-get update
+  apt-get install -y build-essential wget zlib1g-dev libssl-dev libffi-dev
+
+  cd /tmp
+  wget ftp://ftp.ruby-lang.org//pub/ruby/1.9/ruby-1.9.2-p180.tar.bz2
+  tar -xf ruby-1.9.2-p180.tar.bz2
+
+  cd ruby-1.9.2-p180
+  ./configure
+  make
+  make install
+
+  cd ext/openssl
+  ruby extconfig.rb
+  make
+  make install
+
+  cd ../ext/readline
+  ruby extconf.rb
+  make
+  make install
+
+  gem update --system
+
+fi
+
+gem install ohai --no-rdoc --no-ri --verbose
+gem install chef --no-rdoc --no-ri --verbose <%= bootstrap_version_string %>
+
+mkdir -p /etc/chef
+
+(
+cat <<'EOP'
+<%= validation_key %>
+EOP
+) > /tmp/validation.pem
+awk NF /tmp/validation.pem > /etc/chef/validation.pem
+rm /tmp/validation.pem
+
+(
+cat <<'EOP'
+<%= config_content %>
+EOP
+) > /etc/chef/client.rb
+
+(
+cat <<'EOP'
+<%= { "run_list" => @run_list }.to_json %>
+EOP
+) > /etc/chef/first-boot.json
+
+/usr/local/bin/chef-client -j /etc/chef/first-boot.json'
