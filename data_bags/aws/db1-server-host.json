@@ -1,0 +1,8 @@
+{
+  "id": "db1-server-host",
+
+  "fqdn": "db1.solots.com",
+  "hostname": "db1",
+  "public_ip": "107.22.255.216"
+}
+

@@ -2,9 +2,9 @@
   "id": "app",
   "groups": [ "www-data" ],
   "local_files": true,
-  "full_name": "Rails App",
+  "full_name": "Ken Joyner",
   "shell": "/bin/bash",
-  "ssh_key": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA8zyw46dpTPwKiUKohSh7i4Tu0H+X8J5DTfleMRwbonyrbJSKChqbH4LZt7x5o+w9EYdzuUrS2ZE43b9KGPHQUenTOcF6YSR7L+/VEPEYXda6T3EX9hVckgq1XN3bKex6yV6YngQ6scBRLZ+waqykK81q78R9UoHP2oLTfI91xdFodTvZSfzH4WKDbPgXnP0ctMEdAtTYFHeqMm31epoGw31zjN65aUQOmQ6WJpWYEqj/D3Pi3CAnxQb5iLhGpsC2SZz3gXEhqu1qTeqZ7NrVLoLnu+dJI5oelYYJJaox78Flk/FPeA+w+RqZuvQVONUsOTd7YFfedkaK4G2VLGbzXQ== ken@Kens-MacBook.local",
+  "ssh_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2LAQUSIScm59u/DwkDrd2Hl7Qon3m63F6DRNhWtk3q3Hkoo1Qo+z7X2watdc0VYmLB+hFUr9Y428FMX21cXkAUOMO8VJRhyDH9d+Tf4vnpSCHKlA7aWBZyx6LVrLX6r4q9hHBABhzRA2EQNgjwY04KUKc3uP4wwM7wKBmwaut7t8UZWECRyx0BlhyIdR4CD+GKFy3L3XeCenkoCyYf3RclkaKJmkOmsd3jMzgK53qZnGWLMWKw9CGedZlC7HsVz2tpqob0+TubZ5kVUCw0yCkM55FQRwIFLpD6VGiJ+Eq/7zSp7n4bViXWtRx44JmmW3GVSpQe9Ks3l16SRjoBmTB ken@kens-macbook",
   "password": "$1$ZWklZFoY$0gxmF161Ah6I5UoAOfty4."
 }
 

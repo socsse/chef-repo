@@ -1,6 +1,6 @@
-[submodule "cookbooks/opscode-cookbooks"]
-	path = cookbooks/opscode-cookbooks
+[submodule "alien-cookbooks/opscode-cookbooks"]
+	path = alien-cookbooks/opscode-cookbooks
 	url = git@github.com:socsse/cookbooks.git
-[submodule "cookbooks/37s-cookbooks"]
-	path = cookbooks/37s-cookbooks
+[submodule "alien-cookbooks/37s-cookbooks"]
+	path = alien-cookbooks/37s-cookbooks
 	url = git@github.com:socsse/37s_cookbooks.git
