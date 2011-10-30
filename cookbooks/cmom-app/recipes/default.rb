@@ -8,11 +8,31 @@
 #
 
 include_recipe "apache2"
+include_recipe "aws"
 
-directory "/var/www/cMoM" do
+APP_DIR = "/var/www/cMoM"
+SHARED_CONFIG_DIR = "#{APP_DIR}/shared/config"
+
+# TODO: Should raise exeception if not found
+aws_main = data_bag_item( "aws", "main" )
+
+# create both the app directory and the shared config directory
+directory SHARED_CONFIG_DIR do
+  owner "app"
   group "www-data"
   mode  "775"
+  recursive true
+end
+
+template "#{SHARED_CONFIG_DIR}/broker.yml" do
+  source "broker.yml.erb"
   owner "app"
+  group "www-data"
+  mode 0400
+  variables(
+    :aws_access_key_id => aws_main[ "aws_access_key_id" ],
+    :aws_secret_access_key => aws_main[ "aws_secret_access_key" ]
+  )
 end
 
 web_app "cMoM" do

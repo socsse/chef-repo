@@ -14,6 +14,7 @@ override_attributes(
   }
 )
 run_list(
+  "role[base]",
   "recipe[set-hostname]",
   "recipe[users]",
   "recipe[db-server]"
