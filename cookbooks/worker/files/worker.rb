@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/local/bin/ruby
 
 require "worker_config"
 #require 'rubygems'
@@ -22,27 +22,27 @@ def to_h(m)
     kvs << kv
   end
   key_values = kvs.inject({}) do |hash, value|
-	  hash[value.first] = value.last 
-	  hash
-	end
+    hash[value.first] = value.last
+    hash
+  end
   return key_values
 end
 
 # ------------------------------------ process a job
 
 # grab queues
-sqs = Aws::SqsGen2.new( AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY )
+sqs = Aws::Sqs.new( AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY )
 job_queue = sqs.queue( JOB_QUEUE )
 
 while true
   begin
     # read a single message (if any) and set MessageVisibility on it
     msg = job_queue.receive
-    
+
     # if we didn't receive message check again later
-    if msg.nil? 
+    if msg.nil?
       sleep JOB_QUEUE_POLL_FREQUENCY
-    else 
+    else
       # record time message read
       msg_time_read = Time.now.httpdate
 

@@ -24,6 +24,17 @@ directory SHARED_CONFIG_DIR do
   recursive true
 end
 
+template "#{SHARED_CONFIG_DIR}/aws.yml" do
+  source "aws.yml.erb"
+  owner "app"
+  group "www-data"
+  mode 0400
+  variables(
+    :aws_access_key_id => aws_main[ "aws_access_key_id" ],
+    :aws_secret_access_key => aws_main[ "aws_secret_access_key" ]
+  )
+end
+
 template "#{SHARED_CONFIG_DIR}/broker.yml" do
   source "broker.yml.erb"
   owner "app"
