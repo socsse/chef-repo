@@ -8,12 +8,21 @@
 #
 # TODO: Change file/directory permissions before production
 
-include_recipe "aws"
+include_recipe "aws-sdk"
+include_recipe "mongodb::apt"
 
 aws_main = data_bag_item( "aws", "main" )
 # TODO: Should raise exeception if not found
 
-gem_package "aws" do
+gem_package "json" do
+  action :install
+end
+
+gem_package "mongo" do
+  action :install
+end
+
+gem_package "bson_ext" do
   action :install
 end
 
@@ -33,8 +42,9 @@ template "#{worker_dir}/worker_config.rb" do
   variables(
     :aws_access_key => aws_main[ "aws_access_key_id" ],
     :aws_secret_access_key => aws_main[ "aws_secret_access_key" ],
-    :job_queue => node[:worker][:job_queue],
-    :job_queue_poll_frequency => node[:worker][:job_queue_poll_frequency]
+    :job_todo_queue => node[:worker][:job_todo_queue],
+    :job_todo_queue_poll_frequency => node[:worker][:job_todo_queue_poll_frequency]
+    :job_status_queue => node[:worker][:job_status_queue],
   )
 end
 
