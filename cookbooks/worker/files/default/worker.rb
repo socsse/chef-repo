@@ -32,7 +32,7 @@ todo_queue.poll do |msg|
 
   config_file = job_params["config_file"]
   config_obj  = bucket.objects[config_file]
-  config_data = config_obj.read
+  config_data = JSON.parse(config_obj.read)
 
   # send start message
 
@@ -45,7 +45,7 @@ todo_queue.poll do |msg|
 
   msg[:status] = "running"
 
-  status_queue.send_message(msg)
+  status_queue.send_message(msg.to_json)
 
   # simulate job time
 
@@ -53,11 +53,11 @@ todo_queue.poll do |msg|
 
   # write job output files (example)
 
-  output_dir = File.basename(config_file)
+  output_object_name = File.join(File.dirname(config_file), "output.html")
+  s3_object = bucket.objects[output_object_name]
+  s3_object.write("<p>This should contain information about the job with links to different output files.</p>")
 
-  output_file_name = "#{output_dir}/output.html"
-  s3_object = bucket.objects[output_file_name]
-  s3_object.write("<p>This should contain information about the job.</p>")
+  output_file = s3_object.url_for(:read, :expires => OUTPUT_URL_EXPIRATION).to_s
 
   # notify web-app we are done
 
@@ -69,9 +69,9 @@ todo_queue.poll do |msg|
   msg[:chip_id] = config_data["user"]["chip"]["id"]
 
   msg[:status]      = "finished"
-  msg[:output_file] = s3_object.public_url
+  msg[:output_file] = output_file
 
-  status_queue.send_message(msg)
+  status_queue.send_message(msg.to_json)
 
   # send email to user
 
@@ -80,7 +80,7 @@ todo_queue.poll do |msg|
     :subject => "Job to Create Chip '<name>' Completed",
     :from => "ken@kjoyner.com",
     :to => "ken@kjoyner.com",
-    :body_html => "<h1>Chip '<name>'</h1><p>Output file = #{s3_object.public_url}")
+    :body_html => "<h1>Chip '<name>'</h1><p>Output file = #{output_file}")
 
   # clean-up job data
   config_obj.delete

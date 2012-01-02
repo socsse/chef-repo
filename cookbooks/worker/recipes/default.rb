@@ -44,7 +44,8 @@ template "#{worker_dir}/worker_config.rb" do
     :aws_secret_access_key => aws_main[ "aws_secret_access_key" ],
     :job_status_queue => node[:worker][:job_status_queue],
     :job_todo_queue => node[:worker][:job_todo_queue],
-    :job_todo_queue_poll_frequency => node[:worker][:job_todo_queue_poll_frequency]
+    :job_todo_queue_poll_frequency => node[:worker][:job_todo_queue_poll_frequency],
+    :output_url_expiration => node[:worker][:output_url_expiration]
   )
 end
 
