@@ -28,7 +28,7 @@ directory APP_DIR do
 end
 
 # create the shared directory
-directory APP_DIR do
+directory SHARED_DIR do
   owner "app"
   group "www-data"
   mode  "775"
