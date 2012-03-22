@@ -12,13 +12,22 @@ include_recipe "aws"
 
 APP_DIR = "/var/www/cMoM"
 
-SHARED_CONFIG_DIR = "#{APP_DIR}/shared/config"
-SHARED_LOG_DIR    = "#{APP_DIR}/shared/log"
+SHARED_DIR        = "#{APP_DIR}/shared"
+SHARED_CONFIG_DIR = "#{SHARED_DIR}/config"
+SHARED_LOG_DIR    = "#{SHARED_DIR}/log"
 
 # TODO: Should raise exeception if not found
 aws_main = data_bag_item( "aws", "main" )
 
 # create the app directory
+directory APP_DIR do
+  owner "app"
+  group "www-data"
+  mode  "775"
+  recursive true
+end
+
+# create the shared directory
 directory APP_DIR do
   owner "app"
   group "www-data"
